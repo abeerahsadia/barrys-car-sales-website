@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Contact Barry's Car Sales in Hatfield about a vehicle, arrange an enquiry or ask our team a question.">
+
+    <meta name="theme-color" content="#0b0b0b">
+
+    <title>Vehicle Enquiry | Barry's Car Sales</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="vehicle-data.js" defer></script>
+    <script src="script.js" defer></script>
+
+
+    <style>
+        /* =================================
+           ENQUIRY PAGE
+        ================================= */
+
+        .enquiry-page {
+            background: #0b0b0b;
+            color: #f5f3ef;
+        }
+
+
+        /* HERO */
+
+        .enquiry-hero {
+            min-height: 500px;
+            padding: 100px 7%;
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(8, 8, 8, 0.96) 0%,
+                    rgba(8, 8, 8, 0.78) 45%,
+                    rgba(8, 8, 8, 0.25) 100%
+                ),
+                url("enquiry-hero.webp");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .enquiry-hero-content {
+            max-width: 750px;
+        }
+
+        .enquiry-hero .eyebrow {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 4px;
+            font-weight: 700;
+            color: #a9dceb;
+            margin-bottom: 30px;
+        }
+
+        .enquiry-hero h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(55px, 8vw, 100px);
+            font-weight: 400;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            margin: 0 0 30px;
+        }
+
+        .enquiry-hero p {
+            color: #cccccc;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 480px;
+        }
+
+
+        /* ENQUIRY SECTION */
+
+        .enquiry-section {
+            background: #e9e4d9;
+            color: #111111;
+            padding: 90px 7%;
+        }
+
+        .enquiry-layout {
+            display: grid;
+            grid-template-columns: 1.7fr 0.8fr;
+            gap: 80px;
+            max-width: 1400px;
+            margin: auto;
+            align-items: start;
+        }
+
+
+        /* FORM */
+
+        .enquiry-form-container {
+            width: 100%;
+        }
+
+        #enquiry-form {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .form-group label,
+        .small-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #555555;
+        }
+
+        .required-note {
+            font-size: 12px;
+            letter-spacing: 0;
+            font-weight: 400;
+            color: #555555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #99958d;
+            border-radius: 0;
+            padding: 15px 8px 15px 0;
+            font-family: inherit;
+            font-size: 16px;
+            color: #111111;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: 2px solid #276b82;
+            outline-offset: 3px;
+            border-bottom-color: #276b82;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #666666;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .field-hint {
+            color: #555555;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+
+        /* CONTACT METHOD */
+
+        .contact-preference {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            border: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-preference legend {
+            margin-bottom: 15px;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .radio-options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .radio-options input {
+            width: 18px;
+            height: 18px;
+            accent-color: #276b82;
+        }
+
+
+        /* CHECKBOX */
+
+        .offers-checkbox label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            cursor: pointer;
+        }
+
+        .offers-checkbox input {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            accent-color: #276b82;
+        }
+
+
+        /* SUBMIT */
+
+        .submit-row {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .submit-button {
+            background: #0b0b0b;
+            color: #f5f3ef;
+            border: 1px solid #0b0b0b;
+            padding: 20px 35px;
+            min-height: 54px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #a9dceb;
+            color: #111111;
+            border-color: #a9dceb;
+            transform: translateY(-2px);
+        }
+
+        .submit-button:focus-visible {
+            outline: 3px solid #276b82;
+            outline-offset: 4px;
+        }
+
+        .submit-row p {
+            color: #555555;
+            font-size: 13px;
+            line-height: 1.6;
+            max-width: 260px;
+        }
+
+
+        /* FORM STATUS */
+
+        .form-status {
+            padding: 14px 16px;
+            border-left: 4px solid #276b82;
+            background: #f5f1e8;
+            color: #111111;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        /* SIDEBAR */
+
+        .enquiry-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: sticky;
+            top: 30px;
+        }
+
+
+        /* SHOWROOM IMAGE */
+
+        .showroom-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .showroom-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .showroom-image:hover img {
+            transform: scale(1.05);
+        }
+
+
+        /* CONTACT CARD */
+
+        .enquiry-contact-card {
+            background: #0b0b0b;
+            color: #f5f3ef;
+            padding: 40px;
+        }
+
+        .contact-card-section {
+            margin-bottom: 35px;
+        }
+
+        .contact-card-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-label {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: #a9dceb;
+            margin-bottom: 18px;
+        }
+
+        .contact-card-section h2,
+        .contact-card-section h3 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 26px;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .contact-card-section p {
+            color: #cccccc;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .contact-card-section a {
+            color: #f5f3ef;
+            text-decoration: none;
+        }
+
+        .contact-card-section a:hover {
+            color: #a9dceb;
+            text-decoration: underline;
+        }
+
+        .contact-hours {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 14px 0;
+            border-bottom: 1px solid #333333;
+            font-size: 13px;
+            color: #cccccc;
+        }
+
+        .contact-hours:last-child {
+            border-bottom: none;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .enquiry-layout {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .enquiry-sidebar {
+                position: static;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .enquiry-hero {
+                padding: 70px 6%;
+                min-height: 350px;
+                background-position: 65% center;
+            }
+
+            .enquiry-hero h1 {
+                font-size: 55px;
+            }
+
+            .enquiry-section {
+                padding: 60px 6%;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .submit-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .submit-button {
+                width: 100%;
+            }
+
+            .enquiry-contact-card {
+                padding: 28px;
+            }
+
+            .contact-hours {
+                font-size: 12px;
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .showroom-image img,
+            .submit-button {
+                transition: none;
+            }
+
+            .showroom-image:hover img,
+            .submit-button:hover {
+                transform: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="enquiry-page">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ACCESSIBILITY BUTTON -->
+<button class="accessibility-launcher"
+        id="accessibility-launcher"
+        type="button"
+        aria-label="Open accessibility settings"
+        aria-expanded="false"
+        aria-controls="accessibility-panel">
+    <span aria-hidden="true">♿</span>
+</button>
+
+<!-- ACCESSIBILITY PANEL -->
+<section class="accessibility-panel"
+         id="accessibility-panel"
+         aria-label="Accessibility settings"
+         hidden>
+
+    <div class="accessibility-panel-header">
+        <h2>Accessibility</h2>
+        <button type="button"
+                id="accessibility-close"
+                aria-label="Close accessibility settings">✕</button>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Read aloud</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="read-play" type="button">Read aloud</button>
+            <button class="accessibility-button" id="read-pause" type="button">Pause</button>
+            <button class="accessibility-button" id="read-resume" type="button">Resume</button>
+            <button class="accessibility-button" id="read-stop" type="button">Stop</button>
+        </div>
+
+        <label for="reading-speed">Reading speed</label>
+        <select id="reading-speed">
+            <option value="0.75">Slow</option>
+            <option value="1" selected>Normal</option>
+            <option value="1.25">Fast</option>
+            <option value="1.5">Very fast</option>
+        </select>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Text size</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="text-smaller" type="button">A−</button>
+            <button class="accessibility-button" id="text-normal" type="button">A</button>
+            <button class="accessibility-button" id="text-larger" type="button">A+</button>
+        </div>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Display settings</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="contrast-toggle" type="button">High contrast</button>
+            <button class="accessibility-button" id="motion-toggle" type="button">Reduce motion</button>
+            <button class="accessibility-button" id="accessibility-reset" type="button">Reset all</button>
+        </div>
+    </div>
+
+    <p id="accessibility-status" role="status" aria-live="polite"></p>
+
+</section>
+
+<a class="skip-link" href="#main-content">
+    Skip to main content
+</a>
+
+
+<!-- =====================================================
+     SHARED HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="header-top">
+
+        <a class="brand-group" href="index.html" aria-label="Barry's Car Sales home">
+
+            <img
+                src="logo.png"
+                alt="Barry's Car Sales"
+                class="header-logo"
+            >
+
+            <span class="brand-copy">
+
+                <span class="brand-name">Barry's Car Sales</span>
+
+                <span class="brand-tagline">Quality Cars. Honest Prices.</span>
+
+            </span>
+
+        </a>
+
+
+        <nav class="main-nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="vehicle-search.html">Explore Cars</a>
+    <a href="enquiry.html" aria-current="page">Contact</a>
+</nav>
+
+
+        <a href="tel:01707111222" class="header-phone">
+
+            <i data-lucide="phone" aria-hidden="true"></i>
+
+            <span>01707 111 222</span>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="enquiry-page" id="main-content">
+
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="enquiry-hero">
+
+        <div class="enquiry-hero-content">
+
+            <span class="eyebrow">CONTACT</span>
+
+            <h1>
+                Vehicle<br>
+                enquiry
+            </h1>
+
+            <p>
+                Complete the form below and get in touch with
+                Barry's Car Sales. Our team can help with vehicle
+                enquiries and questions about our services.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FORM SECTION
+    ================================================== -->
+
+    <section class="enquiry-section" aria-label="Contact and vehicle enquiry form">
+
+        <div class="enquiry-layout">
+
+
+            <!-- ENQUIRY FORM -->
+
+            <div class="enquiry-form-container">
+
+
+                <form
+                    id="enquiry-form"
+                    method="POST"
+                >
+
+                    <p class="required-note">
+                        Fields marked with * are required.
+                    </p>
+
+
+                    <!-- VEHICLE -->
+
+                    <div class="form-group full-width">
+
+                        <label for="vehicle">
+                            VEHICLE <span aria-hidden="true">*</span>
+                        </label>
+
+                        <select
+                            id="vehicle"
+                            name="vehicle"
+                            required
+                        >
+
+                           <option value="">Choose a vehicle</option>
+                           <option value="General enquiry">General enquiry</option>
+                           <option value="Other">Other</option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="form-group full-width">
+
+                        <label for="fullname">
+                            FULL NAME <span aria-hidden="true">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullname"
+                            name="fullname"
+                            placeholder="e.g. Dave Smith"
+                            autocomplete="name"
+                            minlength="2"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- EMAIL AND TELEPHONE -->
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                EMAIL ADDRESS <span aria-hidden="true">*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="name@example.com"
+                                autocomplete="email"
+                                maxlength="254"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="telephone">
+                                TELEPHONE
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="telephone"
+                                name="telephone"
+                                placeholder="Your phone number"
+                                autocomplete="tel"
+                                maxlength="25"
+                            >
+
+                            <span class="field-hint">
+                                Optional if you prefer to be contacted by email.
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- MESSAGE -->
+
+                    <div class="form-group full-width">
+
+                        <label for="message">
+                            YOUR MESSAGE
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Tell us what you would like to know..."
+                            rows="5"
+                            maxlength="2000"
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <!-- CONTACT PREFERENCE -->
+
+                    <fieldset class="contact-preference">
+
+                        <legend class="small-label">
+                            PREFERRED CONTACT METHOD
+                        </legend>
+
+                        <div class="radio-options">
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="contact-method"
+                                    value="Phone"
+                                >
+
+                                Phone
+
+                            </label>
+
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="contact-method"
+                                    value="Email"
+                                    checked
+                                >
+
+                                Email
+
+                            </label>
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- OFFERS -->
+
+                    <div class="offers-checkbox">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                name="offers"
+                                value="Yes"
+                            >
+
+                            <span>
+                                Send me occasional offers and updates.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- FORM STATUS -->
+
+                    <div
+                        id="form-status"
+                        class="form-status"
+                        role="status"
+                        aria-live="polite"
+                        hidden
+                    ></div>
+
+
+
+                    <!-- SUBMIT -->
+
+                    <div class="submit-row">
+
+                        <button
+                            type="submit"
+                            class="submit-button"
+                        >
+                            SUBMIT ENQUIRY
+                        </button>
+
+                        <p>
+                            Please check your details before submitting
+                            your enquiry.
+                        </p>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+
+
+            <!-- SIDEBAR -->
+
+            <aside class="enquiry-sidebar" aria-label="Showroom contact information">
+
+
+                <!-- SHOWROOM IMAGE -->
+
+                <div class="showroom-image">
+
+                    <img
+                        src="showroom-interior.webp"
+                        alt="Interior of Barry's Car Sales showroom"
+                        class="enquiry-image"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+
+                <!-- CONTACT INFORMATION -->
+
+                <div class="enquiry-contact-card">
+
+
+                    <!-- TELEPHONE -->
+
+                    <div class="contact-card-section">
+
+                        <span class="card-label">
+                            TELEPHONE
+                        </span>
+
+                        <h2>
+                            <a href="tel:01707111222">
+                                01707 111 222
+                            </a>
+                        </h2>
+
+                    </div>
+
+
+
+                    <!-- SHOWROOM -->
+
+                    <div class="contact-card-section">
+
+                        <span class="card-label">
+                            SHOWROOM
+                        </span>
+
+                        <p>
+                            15 Chipmunk Close,<br>
+                            Hatfield, Hertfordshire
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- OPENING TIMES -->
+
+                    <div class="contact-card-section">
+
+                        <span class="card-label">
+                            OPENING TIMES
+                        </span>
+
+
+                        <div class="contact-hours">
+
+                            <span>Mon–Fri</span>
+
+                            <span>9:00–17:30</span>
+
+                        </div>
+
+
+                        <div class="contact-hours">
+
+                            <span>Saturday</span>
+
+                            <span>9:00–16:00</span>
+
+                        </div>
+
+
+                        <div class="contact-hours">
+
+                            <span>Sunday</span>
+
+                            <span>Closed</span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </aside>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     SHARED FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+            <img
+                src="logo.png"
+                alt="Barry's Car Sales"
+                class="footer-logo"
+                loading="lazy"
+            >
+
+            <div class="footer-brand-text">
+
+                <h3>Barry's Car Sales</h3>
+
+                <p>
+                    Local quality used cars at sensible prices
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-divider" aria-hidden="true"></div>
+
+
+        <div class="footer-business-info">
+
+            <span>Barry's Car Sales</span>
+
+            <span class="footer-separator" aria-hidden="true">·</span>
+
+            <span>15 Chipmunk Close, Hatfield, Hertfordshire</span>
+
+            <span class="footer-separator" aria-hidden="true">·</span>
+
+            <a href="tel:01707111222">
+                01707 111 222
+            </a>
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     ICON LIBRARY
+===================================================== -->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+
+</script>
+
+<script src="accessibility.js" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const vehicleSelect = document.getElementById("vehicle");
+    const vehicles = window.BARRYS_VEHICLES || [];
+
+    if (!vehicleSelect) return;
+
+    const generalOption = vehicleSelect.querySelector(
+        'option[value="General enquiry"]'
+    );
+
+    vehicles.forEach(function (car) {
+        const option = document.createElement("option");
+
+        option.value = car.id;
+        option.textContent = car.year + " " + car.name;
+
+        vehicleSelect.insertBefore(option, generalOption);
+    });
+});
+</script>
+</body>
+
+</html>
+

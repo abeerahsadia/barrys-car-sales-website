@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore vehicle details, specifications and finance estimates at Barry's Car Sales.">
+    <meta name="theme-color" content="#101112">
+    <title>Vehicle Details | Barry's Car Sales</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* PAGE BASE */
+        .details-page {
+            margin: 0;
+            background: #f5f1e8;
+            color: #17191b;
+            font-family: Arial, sans-serif;
+        }
+
+        .details-page * {
+            box-sizing: border-box;
+        }
+
+        /* HEADER */
+        .details-page .site-header {
+            width: 100%;
+            padding: 12px 5%;
+            background: #101112;
+            border-bottom: 1px solid #303030;
+        }
+
+        .details-page .header-top {
+            max-width: 1500px;
+            min-height: 85px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .details-page .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .details-page .header-logo {
+            width: 110px;
+            height: 72px;
+            object-fit: contain;
+        }
+
+        .details-page .brand-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .details-page .brand-name {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .details-page .brand-tagline {
+            color: #9bdbea;
+            font-size: 12px;
+        }
+
+        .details-page .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-left: auto;
+        }
+
+        .details-page .main-nav a {
+            color: #eee;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .details-page .main-nav a:hover,
+        .details-page .main-nav a.active {
+            color: #9bdbea;
+        }
+
+        .details-page .header-phone {
+            padding: 13px 18px;
+            background: #9bdbea;
+            color: #101112;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            border-radius: 4px;
+        }
+
+        /* HERO IMAGE */
+        .details-hero {
+            min-height: 370px;
+            display: flex;
+            align-items: flex-end;
+            padding: 55px 7%;
+            background:
+                linear-gradient(90deg, rgba(10,12,14,.88), rgba(10,12,14,.25)),
+                url("vehicle-details-background.webp") center 55% / cover no-repeat;
+            color: #fff;
+        }
+
+        .details-hero-content {
+            max-width: 850px;
+        }
+
+        .details-hero .hero-eyebrow {
+            color: #9bdbea;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .details-hero h1 {
+            margin: 15px 0;
+            font-family: Georgia, serif;
+            font-size: clamp(38px, 5vw, 65px);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .details-hero p {
+            color: #eee;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* BREADCRUMB */
+        .details-breadcrumb {
+            max-width: 1450px;
+            margin: auto;
+            padding: 25px 6%;
+            color: #686868;
+            font-size: 13px;
+        }
+
+        .details-breadcrumb a {
+            color: #397d91;
+            text-decoration: none;
+        }
+
+        /* VEHICLE SECTION */
+        .vehicle-details-section {
+            padding: 35px 6% 80px;
+        }
+
+        .vehicle-details-container {
+            max-width: 1450px;
+            margin: auto;
+        }
+
+        .vehicle-details-grid {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 55px;
+            align-items: start;
+        }
+
+        .vehicle-gallery {
+            min-width: 0;
+        }
+
+        .main-vehicle-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: #dedbd3;
+        }
+
+        .main-vehicle-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .vehicle-thumbnails {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+
+        .vehicle-thumbnail {
+            width: 105px;
+            height: 75px;
+            padding: 3px;
+            flex: 0 0 auto;
+            border: 1px solid #d1cec6;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .vehicle-thumbnail.active {
+            border: 2px solid #559caf;
+        }
+
+        .vehicle-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* VEHICLE INFORMATION */
+        .vehicle-information {
+            padding: 5px 0;
+        }
+
+        .vehicle-eyebrow {
+            color: #397d91;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .vehicle-information h2 {
+            margin: 18px 0;
+            font-family: Georgia, serif;
+            font-size: clamp(34px, 4vw, 54px);
+            font-weight: 400;
+            line-height: 1.15;
+        }
+
+        .vehicle-year {
+            color: #686868;
+            font-size: 15px;
+        }
+
+        .vehicle-price {
+            margin: 20px 0 28px;
+            color: #17191b;
+            font-size: 35px;
+            font-weight: 700;
+        }
+
+        /* QUICK SPECIFICATIONS */
+        .vehicle-quick-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid #d6d2c9;
+            border-left: 1px solid #d6d2c9;
+            margin-bottom: 28px;
+        }
+
+        .quick-spec {
+            min-height: 105px;
+            padding: 20px;
+            border-right: 1px solid #d6d2c9;
+            border-bottom: 1px solid #d6d2c9;
+        }
+
+        .quick-spec span {
+            display: block;
+            margin-bottom: 10px;
+            color: #686868;
+            font-size: 14px;
+        }
+
+        .quick-spec strong {
+            color: #17191b;
+            font-size: 16px;
+        }
+
+        /* ACTION BUTTONS */
+        .vehicle-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .vehicle-action-button {
+            min-height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 18px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 1px solid #17191b;
+            transition: .2s ease;
+        }
+
+        .vehicle-action-primary {
+            grid-column: 1 / -1;
+            background: #17191b;
+            color: #fff;
+        }
+
+        .vehicle-action-secondary {
+            background: transparent;
+            color: #17191b;
+        }
+
+        .vehicle-action-button:hover {
+            background: #9bdbea;
+            color: #101112;
+            border-color: #9bdbea;
+        }
+
+        /* ABOUT AND SPECIFICATIONS */
+        .vehicle-extra-details {
+            max-width: 1450px;
+            margin: 75px auto 0;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 65px;
+        }
+
+        .details-content-block {
+            padding-top: 25px;
+            border-top: 1px solid #c9c5bc;
+        }
+
+        .details-content-block h2 {
+            margin: 0 0 20px;
+            font-family: Georgia, serif;
+            font-size: 32px;
+            font-weight: 400;
+        }
+
+        .details-content-block p {
+            color: #555b60;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .specification-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .specification-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 14px 0;
+            border-bottom: 1px solid #d6d2c9;
+            font-size: 14px;
+        }
+
+        .specification-list span {
+            color: #686868;
+        }
+
+        .specification-list strong {
+            color: #17191b;
+            text-align: right;
+        }
+
+        /* FINANCE CALCULATOR */
+        .finance-calculator {
+            padding: 75px 7%;
+            background: #17191b;
+            color: #fff;
+        }
+
+        .finance-inner {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .finance-calculator h2 {
+            font-family: Georgia, serif;
+            font-size: 40px;
+            font-weight: 400;
+            margin: 15px 0;
+        }
+
+        .finance-calculator .finance-intro {
+            color: #c4c8ca;
+            line-height: 1.7;
+        }
+
+        .finance-layout {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr;
+            gap: 35px;
+            margin-top: 35px;
+        }
+
+        .finance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .finance-field label {
+            display: block;
+            margin-bottom: 9px;
+            color: #e7e7e7;
+            font-size: 14px;
+        }
+
+        .finance-field input,
+        .finance-field select {
+            width: 100%;
+            height: 50px;
+            padding: 10px;
+            background: #fff;
+            color: #17191b;
+            border: 1px solid #aaa;
+            border-radius: 3px;
+        }
+
+        #calculate-finance {
+            min-height: 50px;
+            padding: 12px 20px;
+            background: #9bdbea;
+            color: #101112;
+            border: 0;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .finance-result {
+            padding: 28px;
+            background: #24282b;
+            border: 1px solid #42484c;
+        }
+
+        .finance-result-label {
+            color: #9bdbea;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .finance-result h3 {
+            margin: 15px 0;
+            font-size: 35px;
+        }
+
+        .finance-result p {
+            color: #d0d4d6;
+            line-height: 1.6;
+        }
+
+        .finance-calculator small {
+            display: block;
+            margin-top: 25px;
+            color: #b8bec1;
+            line-height: 1.7;
+        }
+
+        /* RELATED VEHICLES */
+        .related-vehicles {
+            padding: 75px 6%;
+            background: #fff;
+            color: #17191b;
+        }
+
+        .related-inner {
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .related-vehicles h2 {
+            font-family: Georgia, serif;
+            font-size: 40px;
+            font-weight: 400;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .related-card {
+            overflow: hidden;
+            background: #f5f1e8;
+            border: 1px solid #dedbd3;
+        }
+
+        .related-card > a img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .related-card-content {
+            padding: 22px;
+        }
+
+        .related-card-content span {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .related-card-content h3 {
+            font-size: 19px;
+        }
+
+        .related-card-content strong {
+            display: block;
+            margin: 15px 0;
+            color: #276b82;
+            font-size: 21px;
+        }
+
+        .related-card-content a {
+            color: #17191b;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* FOOTER */
+        .details-page .site-footer {
+            padding: 50px 6% 28px;
+            background: #101112;
+            color: #fff;
+        }
+
+        .details-page .footer-content {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .details-page .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .details-page .footer-logo {
+            width: 115px;
+            height: 75px;
+            object-fit: contain;
+        }
+
+        .details-page .footer-brand-text h3 {
+            margin: 0 0 8px;
+            color: #fff;
+        }
+
+        .details-page .footer-brand-text p {
+            margin: 0;
+            color: #c4c8ca;
+        }
+
+        .details-page .footer-divider {
+            width: 100%;
+            height: 1px;
+            background: #34383b;
+        }
+
+        .details-page .footer-business-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            color: #d1d5d7;
+            font-size: 14px;
+        }
+
+        .details-page .footer-business-info a {
+            color: #9bdbea;
+            text-decoration: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .details-page .header-top {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .details-page .main-nav {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin: 0;
+            }
+
+            .vehicle-details-grid,
+            .vehicle-extra-details,
+            .finance-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
+            .details-page .header-logo {
+                width: 80px;
+            }
+
+            .details-page .brand-name {
+                font-size: 17px;
+            }
+
+            .details-page .main-nav {
+                gap: 15px;
+            }
+
+            .details-hero {
+                min-height: 280px;
+                padding: 35px 6%;
+            }
+
+            .vehicle-details-section {
+                padding: 25px 5% 55px;
+            }
+
+            .vehicle-quick-specs,
+            .finance-grid,
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vehicle-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .vehicle-action-primary {
+                grid-column: auto;
+            }
+
+            .vehicle-extra-details {
+                gap: 40px;
+            }
+
+            .finance-calculator {
+                padding: 55px 6%;
+            }
+
+            .details-page .footer-brand {
+                align-items: flex-start;
+            }
+
+            .details-page .footer-business-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .details-page .footer-business-info > span:nth-child(even) {
+                display: none;
+            }
+        }
+    </style>
+
+    <script src="vehicle-data.js" defer></script>
+    <script src="car-details.js" defer></script>
+    <script src="accessibility.js" defer></script>
+</head>
+
+<body class="details-page">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+
+<!-- SHARED HEADER -->
+<header class="site-header">
+    <div class="header-top">
+
+        <a class="brand-group" href="index.html" aria-label="Barry's Car Sales home">
+            <img
+                src="logo.png"
+                alt="Barry's Car Sales"
+                class="header-logo"
+            >
+
+            <span class="brand-copy">
+                <span class="brand-name">Barry's Car Sales</span>
+                <span class="brand-tagline">Quality Cars. Honest Prices.</span>
+            </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="vehicle-search.html">Explore Cars</a>
+            <a href="enquiry.html">Contact</a>
+        </nav>
+
+        <a class="header-phone" href="tel:01707111222">
+            <i data-lucide="phone" aria-hidden="true"></i>
+            <span>01707 111 222</span>
+        </a>
+
+    </div>
+</header>
+
+
+<!-- HERO -->
+<section class="details-hero">
+    <div class="details-hero-content">
+        <span class="hero-eyebrow">THE BARRY'S COLLECTION</span>
+        <h1>Discover your next vehicle.</h1>
+        <p>Explore the details, features and specifications of your chosen car.</p>
+    </div>
+</section>
+
+<main id="main-content">
+
+    <!-- VEHICLE DETAILS -->
+    <section class="vehicle-details-section" id="vehicle-details">
+        <div class="vehicle-details-container">
+            <div class="vehicle-details-grid">
+
+                <div class="vehicle-gallery">
+                    <div class="main-vehicle-image">
+                        <img id="vehicle-image" src="" alt="">
+                    </div>
+                    <div class="vehicle-thumbnails" id="vehicle-thumbnails"
+                         aria-label="Vehicle photographs"></div>
+                </div>
+
+                <div class="vehicle-information">
+                    <span class="vehicle-eyebrow" id="vehicle-year"></span>
+                    <h2 id="vehicle-name"></h2>
+                    <p class="vehicle-price" id="vehicle-price"></p>
+
+                    <div class="vehicle-quick-specs">
+                        <div class="quick-spec">
+                            <span>Mileage</span>
+                            <strong id="vehicle-mileage"></strong>
+                        </div>
+                        <div class="quick-spec">
+                            <span>Fuel Type</span>
+                            <strong id="vehicle-fuel"></strong>
+                        </div>
+                        <div class="quick-spec">
+                            <span>Transmission</span>
+                            <strong id="vehicle-transmission"></strong>
+                        </div>
+                        <div class="quick-spec">
+                            <span>Doors</span>
+                            <strong id="vehicle-doors"></strong>
+                        </div>
+                    </div>
+
+                    <div class="vehicle-actions">
+                        <a href="enquiry.html" id="vehicle-enquiry-link"
+                           class="vehicle-action-button vehicle-action-primary">
+                            Enquire About This Vehicle
+                        </a>
+
+                        <a href="tel:01707111222"
+                           class="vehicle-action-button vehicle-action-secondary">
+                            Call Us
+                        </a>
+
+                        <a href="#finance-calculator"
+                           class="vehicle-action-button vehicle-action-secondary">
+                            Finance Calculator
+                        </a>
+                    </div>
+
+                    <!-- Kept for compatibility with the existing JavaScript -->
+                    <a href="enquiry.html" id="test-drive-link" hidden>
+                        Book a test drive
+                    </a>
+                </div>
+            </div>
+
+            <!-- MORE INFORMATION -->
+            <div class="vehicle-extra-details">
+                <section class="details-content-block">
+                    <span class="vehicle-eyebrow">GET TO KNOW THE CAR</span>
+                    <h2>About This Vehicle</h2>
+                    <p id="vehicle-description"></p>
+                </section>
+
+                <section class="details-content-block">
+                    <span class="vehicle-eyebrow">AT A GLANCE</span>
+                    <h2>Specifications</h2>
+
+                    <ul class="specification-list">
+                        <li><span>Vehicle</span><strong id="spec-name"></strong></li>
+                        <li><span>Year</span><strong id="spec-year"></strong></li>
+                        <li><span>Price</span><strong id="spec-price"></strong></li>
+                        <li><span>Mileage</span><strong id="spec-mileage"></strong></li>
+                        <li><span>Fuel</span><strong id="spec-fuel"></strong></li>
+                        <li><span>Transmission</span><strong id="spec-transmission"></strong></li>
+                        <li><span>Doors</span><strong id="spec-doors"></strong></li>
+                        <li><span>Vehicle Type</span><strong id="spec-type"></strong></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINANCE CALCULATOR -->
+    <section class="finance-calculator" id="finance-calculator"
+             aria-labelledby="finance-heading">
+        <div class="finance-inner">
+            <span class="vehicle-eyebrow">PLAN YOUR PURCHASE</span>
+            <h2 id="finance-heading">Explore your finance estimate.</h2>
+            <p class="finance-intro">
+                Adjust your deposit, APR and repayment period to calculate an
+                illustrative monthly payment.
+            </p>
+
+            <div class="finance-layout">
+                <div class="finance-grid">
+                    <div class="finance-field">
+                        <label for="finance-price">Vehicle price (£)</label>
+                        <input type="number" id="finance-price"
+                               min="1" value="19995">
+                    </div>
+
+                    <div class="finance-field">
+                        <label for="finance-deposit">Your deposit (£)</label>
+                        <input type="number" id="finance-deposit"
+                               min="0" value="2000">
+                    </div>
+
+                    <div class="finance-field">
+                        <label for="finance-apr">Illustrative APR (%)</label>
+                        <input type="number" id="finance-apr"
+                               min="0" max="100" step="0.1" value="9.9">
+                    </div>
+
+                    <div class="finance-field">
+                        <label for="finance-term">Repayment period</label>
+                        <select id="finance-term">
+                            <option value="24">24 months</option>
+                            <option value="36">36 months</option>
+                            <option value="48" selected>48 months</option>
+                            <option value="60">60 months</option>
+                        </select>
+                    </div>
+
+                    <button type="button" id="calculate-finance">
+                        Calculate Estimate →
+                    </button>
+                </div>
+
+                <aside class="finance-result" aria-live="polite">
+                    <span class="finance-result-label">ESTIMATED MONTHLY PAYMENT</span>
+                    <h3 id="monthly-payment">—</h3>
+                    <p id="finance-summary"></p>
+                    <p id="finance-error" role="alert"></p>
+                </aside>
+            </div>
+
+            <small>
+                This is an illustrative calculation, not a finance offer or guarantee.
+                Actual repayments depend on lender terms, fees, credit assessment
+                and eligibility.
+            </small>
+        </div>
+    </section>
+
+    <!-- RELATED VEHICLES -->
+    <section class="related-vehicles">
+        <div class="related-inner">
+            <span class="vehicle-eyebrow">EXPLORE MORE</span>
+            <h2>More from our collection</h2>
+            <div class="related-grid" id="related-vehicles"></div>
+        </div>
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <img
+                src="logo.png"
+                alt="Barry's Car Sales"
+                class="footer-logo"
+                loading="lazy"
+            >
+
+            <div class="footer-brand-text">
+                <h3>Barry's Car Sales</h3>
+                <p>Local quality used cars at sensible prices</p>
+            </div>
+        </div>
+
+        <div class="footer-divider" aria-hidden="true"></div>
+
+        <div class="footer-business-info">
+            <span>Barry's Car Sales</span>
+            <span class="footer-separator" aria-hidden="true">·</span>
+            <span>15 Chipmunk Close, Hatfield, Hertfordshire</span>
+            <span class="footer-separator" aria-hidden="true">·</span>
+            <a href="tel:01707111222">01707 111 222</a>
+        </div>
+
+    </div>
+</footer>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+</script>
+</body>
+<!-- ACCESSIBILITY BUTTON -->
+<button class="accessibility-launcher"
+        id="accessibility-launcher"
+        type="button"
+        aria-label="Open accessibility settings"
+        aria-expanded="false"
+        aria-controls="accessibility-panel">
+    <span aria-hidden="true">♿</span>
+</button>
+
+<!-- ACCESSIBILITY PANEL -->
+<section class="accessibility-panel"
+         id="accessibility-panel"
+         aria-label="Accessibility settings"
+         hidden>
+
+    <div class="accessibility-panel-header">
+        <h2>Accessibility</h2>
+        <button type="button"
+                id="accessibility-close"
+                aria-label="Close accessibility settings">✕</button>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Read aloud</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="read-play" type="button">Read aloud</button>
+            <button class="accessibility-button" id="read-pause" type="button">Pause</button>
+            <button class="accessibility-button" id="read-resume" type="button">Resume</button>
+            <button class="accessibility-button" id="read-stop" type="button">Stop</button>
+        </div>
+
+        <label for="reading-speed">Reading speed</label>
+        <select id="reading-speed">
+            <option value="0.75">Slow</option>
+            <option value="1" selected>Normal</option>
+            <option value="1.25">Fast</option>
+            <option value="1.5">Very fast</option>
+        </select>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Text size</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="text-smaller" type="button">A−</button>
+            <button class="accessibility-button" id="text-normal" type="button">A</button>
+            <button class="accessibility-button" id="text-larger" type="button">A+</button>
+        </div>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Display settings</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="contrast-toggle" type="button">High contrast</button>
+            <button class="accessibility-button" id="motion-toggle" type="button">Reduce motion</button>
+            <button class="accessibility-button" id="accessibility-reset" type="button">Reset all</button>
+        </div>
+    </div>
+
+    <p id="accessibility-status" role="status" aria-live="polite"></p>
+</section>
+</html>
+

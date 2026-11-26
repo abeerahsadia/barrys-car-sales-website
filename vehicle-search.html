@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the Barry's Car Sales collection and find your next vehicle.">
+    <meta name="theme-color" content="#0b0b0b">
+    <title>Explore Cars | Barry's Car Sales</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="vehicle-data.js" defer></script>
+    <script src="vehicle-search.js" defer></script>
+    <script src="accessibility.js" defer></script>
+</head>
+
+<body class="vehicle-search-page">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- SHARED HEADER -->
+<header class="site-header">
+    <div class="header-top">
+        <a class="brand-group" href="index.html" aria-label="Barry's Car Sales home">
+            <img src="logo.png" alt="Barry's Car Sales" class="header-logo">
+            <span class="brand-copy">
+                <span class="brand-name">Barry's Car Sales</span>
+                <span class="brand-tagline">Quality Cars. Honest Prices.</span>
+            </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="vehicle-search.html" class="active" aria-current="page">Explore Cars</a>
+            <a href="about.html">About</a>
+            <a href="enquiry.html">Contact</a>
+        </nav>
+
+        <a class="header-phone" href="tel:01707111222">
+    <i data-lucide="phone" aria-hidden="true"></i>
+    <span>01707 111 222</span>
+</a>
+    </div>
+</header>
+
+<main id="main-content">
+
+    <!-- CINEMATIC HERO -->
+    <section class="collection-hero" aria-labelledby="collection-title">
+        <div class="collection-hero-overlay"></div>
+
+        <div class="collection-hero-content">
+            <span class="collection-eyebrow">THE COLLECTION</span>
+
+            <h1 id="collection-title">
+                Find your <em>vehicle.</em>
+            </h1>
+
+            <p>
+                The right car makes every journey better.
+                Explore our collection and discover a vehicle
+                that feels right for you.
+            </p>
+
+            <a href="#vehicle-search" class="collection-hero-link">
+                DISCOVER THE COLLECTION <span aria-hidden="true">↓</span>
+            </a>
+        </div>
+
+        <div class="collection-hero-caption">
+            BARRY'S CAR SALES <span>—</span> QUALITY CARS. HONEST PRICES.
+        </div>
+    </section>
+
+    <!-- SEARCH PANEL -->
+    <section class="collection-search-section" id="vehicle-search"
+             aria-labelledby="search-heading">
+
+        <div class="collection-search-panel">
+
+            <div class="collection-search-heading">
+                <div>
+                    <span class="search-panel-eyebrow">YOUR NEXT CAR STARTS HERE</span>
+                    <h2 id="search-heading">Refine your search.</h2>
+                    <p>Choose your preferences to explore the collection.</p>
+                </div>
+
+                <button type="button" id="clear-filters" class="clear-search-button">
+                    Clear filters <span aria-hidden="true">↗</span>
+                </button>
+            </div>
+
+            <form id="vehicle-search-form">
+
+                <div class="collection-filter-grid">
+
+                    <div class="collection-filter-field">
+                        <label for="vehicle-name">Search by vehicle name</label>
+                        <input type="search" id="vehicle-name"
+                               placeholder="e.g. BMW, Porsche, Tesla..."
+                               autocomplete="off">
+                    </div>
+
+                    <div class="collection-filter-field">
+                        <label for="min-price">Minimum price (£)</label>
+                        <input type="number" id="min-price"
+                               min="0" placeholder="Minimum price">
+                    </div>
+
+                    <div class="collection-filter-field">
+                        <label for="max-price">Maximum price (£)</label>
+                        <input type="number" id="max-price"
+                               min="0" placeholder="Maximum price">
+                    </div>
+
+                    <div class="collection-filter-field">
+                        <label for="vehicle-type">Vehicle category</label>
+                        <select id="vehicle-type">
+                            <option value="">All categories</option>
+                            <option value="Hatchback">Hatchback</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Saloon">Saloon</option>
+                            <option value="Estate">Estate</option>
+                            <option value="Convertible">Convertible</option>
+                            <option value="Sports Car">Sports Cars</option>
+                            <option value="Electric">Electric</option>
+                        </select>
+                    </div>
+
+                    <div class="collection-filter-field">
+                        <label for="fuel-type">Fuel type</label>
+                        <select id="fuel-type">
+                            <option value="">All fuel types</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="Electric">Electric</option>
+                        </select>
+                    </div>
+
+                    <div class="collection-filter-field">
+                        <label for="transmission">Transmission</label>
+                        <select id="transmission">
+                            <option value="">All transmissions</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Manual">Manual</option>
+                        </select>
+                    </div>
+
+                    <div class="collection-filter-field">
+                        <label for="max-mileage">Maximum mileage</label>
+                        <input type="number" id="max-mileage"
+                               min="0" placeholder="e.g. 50000">
+                    </div>
+
+                    <div class="collection-filter-field">
+                        <label for="sort-cars">Sort by</label>
+                        <select id="sort-cars">
+                            <option value="default">Recommended</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="mileage-low">Lowest Mileage</option>
+                            <option value="year-new">Newest First</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="collection-search-bottom">
+                    <p>Find a vehicle that suits your journey.</p>
+                    <button type="submit" class="show-vehicles-button">
+                        SHOW VEHICLES <span aria-hidden="true">↗</span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- VEHICLE RESULTS -->
+    <section class="collection-results-section" aria-labelledby="results-heading">
+
+        <div class="collection-results-heading">
+            <div>
+                <span class="search-panel-eyebrow">THE BARRY'S COLLECTION</span>
+                <h2 id="results-heading">Explore our vehicles.</h2>
+                <p id="results-count" aria-live="polite"></p>
+            </div>
+        </div>
+
+        <div id="car-results-list" class="car-results-list"></div>
+
+        <div id="no-results" class="collection-no-results" hidden>
+            <h3>No vehicles found.</h3>
+            <p>Try adjusting your search or clearing your filters.</p>
+        </div>
+
+        <p class="collection-disclaimer">
+            Vehicle information and prices shown on this demonstration website
+            are illustrative. Please contact us to confirm availability and specifications.
+        </p>
+
+    </section>
+
+</main>
+
+<!-- SHARED FOOTER -->
+<footer class="site-footer">
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <img src="logo.png" alt="Barry's Car Sales" class="footer-logo">
+            <div class="footer-brand-text">
+                <h3>Barry's Car Sales</h3>
+                <p>Local quality used cars at sensible prices</p>
+            </div>
+        </div>
+
+        <div class="footer-divider" aria-hidden="true"></div>
+
+        <div class="footer-business-info">
+            <span>Barry's Car Sales</span>
+            <span class="footer-separator" aria-hidden="true">·</span>
+            <span>15 Chipmunk Close, Hatfield, Hertfordshire</span>
+            <span class="footer-separator" aria-hidden="true">·</span>
+            <a href="tel:01707111222">01707 111 222</a>
+        </div>
+
+    </div>
+</footer>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+</script>
+</body>
+<!-- ACCESSIBILITY BUTTON -->
+<button class="accessibility-launcher"
+        id="accessibility-launcher"
+        type="button"
+        aria-label="Open accessibility settings"
+        aria-expanded="false"
+        aria-controls="accessibility-panel">
+    <span aria-hidden="true">♿</span>
+</button>
+
+<!-- ACCESSIBILITY PANEL -->
+<section class="accessibility-panel"
+         id="accessibility-panel"
+         aria-label="Accessibility settings"
+         hidden>
+
+    <div class="accessibility-panel-header">
+        <h2>Accessibility</h2>
+        <button type="button"
+                id="accessibility-close"
+                aria-label="Close accessibility settings">✕</button>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Read aloud</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="read-play" type="button">Read aloud</button>
+            <button class="accessibility-button" id="read-pause" type="button">Pause</button>
+            <button class="accessibility-button" id="read-resume" type="button">Resume</button>
+            <button class="accessibility-button" id="read-stop" type="button">Stop</button>
+        </div>
+
+        <label for="reading-speed">Reading speed</label>
+        <select id="reading-speed">
+            <option value="0.75">Slow</option>
+            <option value="1" selected>Normal</option>
+            <option value="1.25">Fast</option>
+            <option value="1.5">Very fast</option>
+        </select>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Text size</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="text-smaller" type="button">A−</button>
+            <button class="accessibility-button" id="text-normal" type="button">A</button>
+            <button class="accessibility-button" id="text-larger" type="button">A+</button>
+        </div>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Display settings</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="contrast-toggle" type="button">High contrast</button>
+            <button class="accessibility-button" id="motion-toggle" type="button">Reduce motion</button>
+            <button class="accessibility-button" id="accessibility-reset" type="button">Reset all</button>
+        </div>
+    </div>
+
+    <p id="accessibility-status" role="status" aria-live="polite"></p>
+</section>
+</html>
+

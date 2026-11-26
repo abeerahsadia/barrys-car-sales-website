@@ -1,0 +1,885 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Discover Barry's Car Sales, a family business in Hatfield offering quality pre-owned vehicles, straightforward advice and customer service.">
+
+    <meta name="theme-color" content="#0b0b0b">
+
+    <title>About Us | Barry's Car Sales</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="script.js" defer></script>
+    <script src="accessibility.js" defer></script>
+</head>
+
+<body class="about-page">
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    
+<!-- FLOATING ACCESSIBILITY BUTTON -->
+<button class="accessibility-launcher"
+        id="accessibility-launcher"
+        type="button"
+        aria-label="Open accessibility settings"
+        aria-expanded="false"
+        aria-controls="accessibility-panel">
+    <span aria-hidden="true">♿</span>
+</button>
+
+<!-- ACCESSIBILITY SETTINGS PANEL -->
+<section class="accessibility-panel"
+         id="accessibility-panel"
+         aria-label="Accessibility settings"
+         hidden>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <h2 style="margin:0">Accessibility</h2>
+        <button type="button" id="accessibility-close" aria-label="Close accessibility settings">✕</button>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px">
+        <button type="button" id="read-play">Read aloud</button>
+        <button type="button" id="read-pause">Pause</button>
+        <button type="button" id="read-resume">Resume</button>
+        <button type="button" id="read-stop">Stop</button>
+    </div>
+
+    <label for="reading-speed" style="display:block;margin-top:15px">Reading speed</label>
+    <select id="reading-speed">
+        <option value="0.75">Slow</option>
+        <option value="1" selected>Normal</option>
+        <option value="1.25">Fast</option>
+        <option value="1.5">Very fast</option>
+    </select>
+
+    <div style="display:flex;gap:8px;margin-top:15px">
+        <button type="button" id="text-smaller">A−</button>
+        <button type="button" id="text-normal">A</button>
+        <button type="button" id="text-larger">A+</button>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:15px">
+        <button type="button" id="contrast-toggle">High contrast</button>
+        <button type="button" id="motion-toggle">Reduce motion</button>
+        <button type="button" id="accessibility-reset">Reset all</button>
+    </div>
+
+    <p id="accessibility-status" role="status" aria-live="polite"></p>
+</section>
+
+
+
+<!-- =====================================================
+     SHARED HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="header-top">
+
+        <a class="brand-group" href="index.html" aria-label="Barry's Car Sales home">
+
+            <img
+                src="logo.png"
+                alt="Barry's Car Sales"
+                class="header-logo"
+            >
+
+            <span class="brand-copy">
+
+                <span class="brand-name">Barry's Car Sales</span>
+
+                <span class="brand-tagline">Quality Cars. Honest Prices.</span>
+
+            </span>
+
+        </a>
+
+
+        <nav class="main-nav" aria-label="Main navigation">
+
+    <a href="index.html">Home</a>
+
+    <a href="about.html" class="active" aria-current="page">About</a>
+
+    <a href="vehicle-search.html">Explore Cars</a>
+
+    <a href="enquiry.html">Contact</a>
+
+</nav>
+
+
+        <a class="header-phone" href="tel:01707111222">
+
+            <i data-lucide="phone" aria-hidden="true"></i>
+
+            <span>01707 111 222</span>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main id="main-content">
+
+
+    <!-- =================================================
+         ABOUT HERO
+    ================================================== -->
+
+    <section class="about-hero" aria-labelledby="about-title">
+
+        <div class="about-hero-content">
+
+            <span class="section-eyebrow">
+                ABOUT BARRY'S
+            </span>
+
+            <h1 id="about-title">
+                A small family business,
+                <br>
+                grown on straightforward
+                <br>
+                advice.
+            </h1>
+
+            <p>
+                Barry's Car Sales began as a small family business in Hatfield,
+                built on honest advice, carefully selected vehicles and a commitment
+                to making buying a car straightforward.
+            </p>
+
+        </div>
+
+    </section>
+
+
+<!-- OUR MISSION AND VALUES -->
+<section class="mission-values-section" aria-labelledby="mission-title">
+
+    <div class="mission-heading">
+        <span class="section-eyebrow">WHAT MATTERS TO US</span>
+
+        <h2 id="mission-title">Our Mission & Values</h2>
+
+        <p>
+            The principles that shape the way we approach car buying
+            and customer service.
+        </p>
+    </div>
+
+    <div class="mission-card">
+
+        <div class="mission-icon">
+            <i data-lucide="target" aria-hidden="true"></i>
+        </div>
+
+        <span>OUR MISSION</span>
+
+        <h3>Making your car buying experience straightforward.</h3>
+
+        <p>
+            Our mission is to make exploring and purchasing a pre-owned
+            vehicle a comfortable experience through clear information,
+            helpful guidance and friendly customer service.
+        </p>
+
+    </div>
+
+    <div class="values-grid">
+
+        <article class="value-card">
+            <i data-lucide="shield-check" aria-hidden="true"></i>
+            <h3>Honesty</h3>
+            <p>We value clear communication and straightforward advice.</p>
+        </article>
+
+        <article class="value-card">
+            <i data-lucide="heart-handshake" aria-hidden="true"></i>
+            <h3>Customer Care</h3>
+            <p>We aim to make every customer feel welcomed and supported.</p>
+        </article>
+
+        <article class="value-card">
+            <i data-lucide="car-front" aria-hidden="true"></i>
+            <h3>Quality</h3>
+            <p>We focus on providing information about our available vehicles.</p>
+        </article>
+
+        <article class="value-card">
+            <i data-lucide="messages-square" aria-hidden="true"></i>
+            <h3>Transparency</h3>
+            <p>We believe customers should have clear information when making decisions.</p>
+        </article>
+
+    </div>
+
+</section>
+
+
+
+    <!-- =================================================
+         WHAT WE DO
+    ================================================== -->
+
+    <section class="services-section" aria-labelledby="services-title">
+
+        <div class="services-heading">
+
+            <span class="section-eyebrow">
+                WHAT WE DO
+            </span>
+
+            <h2 id="services-title">
+                Inspected, explained, handed over.
+            </h2>
+
+        </div>
+
+
+        <div class="services-content">
+
+            <p>
+                Every car is inspected before sale. We can arrange test drives,
+                part exchange and finance quotations. Customers are welcome to
+                visit our showroom or contact us online before travelling.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+
+            <article class="service-card">
+
+                <i data-lucide="steering-wheel" aria-hidden="true"></i>
+
+                <h3>Test Drives</h3>
+
+                <p>
+                    Arrange an opportunity to experience a vehicle before making
+                    your decision.
+                </p>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <i data-lucide="arrow-left-right" aria-hidden="true"></i>
+
+                <h3>Part Exchange</h3>
+
+                <p>
+                    Contact our team to discuss part exchange options for your
+                    current vehicle.
+                </p>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <i data-lucide="coins" aria-hidden="true"></i>
+
+                <h3>Finance Quotations</h3>
+
+                <p>
+                    Get in touch with us to enquire about available finance
+                    quotation options.
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         OUR TEAM
+    ================================================== -->
+
+    <section class="team-section" aria-labelledby="team-title">
+
+        <div class="team-heading">
+
+            <span class="section-eyebrow dark-eyebrow">
+                OUR TEAM
+            </span>
+
+            <h2 id="team-title">
+                The people you'll deal with.
+            </h2>
+
+        </div>
+
+
+        <div class="team-grid">
+
+
+            <!-- TEAM MEMBER 1 -->
+
+            <article class="team-card">
+
+                <img
+                    src="barry.jpg"
+                    alt="Barry Doe"
+                    loading="lazy"
+                >
+
+                <div class="team-card-content">
+
+                    <h3>Barry Doe</h3>
+
+                    <p class="team-role">SALES DIRECTOR</p>
+
+                    <p>20 years' motor trade experience</p>
+
+                </div>
+
+            </article>
+
+
+            <!-- TEAM MEMBER 2 -->
+
+            <article class="team-card">
+
+                <img
+                    src="chris.jpg"
+                    alt="Chris Doe"
+                    loading="lazy"
+                >
+
+                <div class="team-card-content">
+
+                    <h3>Chris Doe</h3>
+
+                    <p class="team-role">CUSTOMER ADVISER</p>
+
+                    <p>Sales and finance enquiries</p>
+
+                </div>
+
+            </article>
+
+
+            <!-- TEAM MEMBER 3 -->
+
+            <article class="team-card">
+
+                <img
+                    src="mac.jpg"
+                    alt="Mac Doe"
+                    loading="lazy"
+                >
+
+                <div class="team-card-content">
+
+                    <h3>Mac Doe</h3>
+
+                    <p class="team-role">VEHICLE PREPARATION</p>
+
+                    <p>Inspections and handovers</p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         WHY CUSTOMERS CHOOSE US
+    ================================================== -->
+
+    <section class="about-benefits" aria-labelledby="benefits-title">
+
+        <div class="about-benefits-inner">
+
+            <div class="about-benefits-heading">
+
+                <span class="section-eyebrow">
+                    WHY CUSTOMERS CHOOSE US
+                </span>
+
+                <h2 id="benefits-title">
+                    Five reasons people come back.
+                </h2>
+
+            </div>
+
+
+            <div class="about-benefits-grid">
+
+
+                <article class="about-benefit-card">
+
+                    <i data-lucide="check-circle" aria-hidden="true"></i>
+
+                    <h3>Friendly Service</h3>
+
+                    <p>
+                        A welcoming approach when discussing your next vehicle.
+                    </p>
+
+                </article>
+
+
+                <article class="about-benefit-card">
+
+                    <i data-lucide="check-circle" aria-hidden="true"></i>
+
+                    <h3>Clear Pricing</h3>
+
+                    <p>
+                        Straightforward pricing information when exploring
+                        available vehicles.
+                    </p>
+
+                </article>
+
+
+                <article class="about-benefit-card">
+
+                    <i data-lucide="check-circle" aria-hidden="true"></i>
+
+                    <h3>Vehicle Checks</h3>
+
+                    <p>
+                        Vehicles are inspected before sale.
+                    </p>
+
+                </article>
+
+
+                <article class="about-benefit-card">
+
+                    <i data-lucide="check-circle" aria-hidden="true"></i>
+
+                    <h3>Part Exchange Available</h3>
+
+                    <p>
+                        Contact the team to discuss part exchange enquiries.
+                    </p>
+
+                </article>
+
+
+                <article class="about-benefit-card">
+
+                    <i data-lucide="check-circle" aria-hidden="true"></i>
+
+                    <h3>Local Family Business</h3>
+
+                    <p>
+                        A family business based in Hatfield, Hertfordshire.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         OUR APPROACH TO CAR BUYING
+    ================================================== -->
+
+    <section class="our-approach" aria-labelledby="approach-title">
+
+        <div class="approach-heading">
+
+            <span class="section-eyebrow dark-eyebrow">
+                YOUR CAR BUYING JOURNEY
+            </span>
+
+            <h2 id="approach-title">
+                A straightforward way to find your next car.
+            </h2>
+
+            <p>
+                Explore our available vehicles and get in touch with our team
+                whenever you need more information.
+            </p>
+
+        </div>
+
+
+        <div class="approach-steps">
+
+
+            <article class="approach-step">
+
+                <span class="approach-step-number">01</span>
+
+                <h3>Browse Vehicles</h3>
+
+                <p>
+                    Explore the vehicles currently available in our collection.
+                </p>
+
+            </article>
+
+
+            <article class="approach-step">
+
+                <span class="approach-step-number">02</span>
+
+                <h3>Find Your Car</h3>
+
+                <p>
+                    Compare the available vehicles and identify one that suits
+                    your preferences.
+                </p>
+
+            </article>
+
+
+            <article class="approach-step">
+
+                <span class="approach-step-number">03</span>
+
+                <h3>Arrange a Test Drive</h3>
+
+                <p>
+                    Contact our team to enquire about arranging a test drive.
+                </p>
+
+            </article>
+
+
+            <article class="approach-step">
+
+                <span class="approach-step-number">04</span>
+
+                <h3>Make an Enquiry</h3>
+
+                <p>
+                    Ask questions about the vehicle and discuss the available
+                    options.
+                </p>
+
+            </article>
+
+
+            <article class="approach-step">
+
+                <span class="approach-step-number">05</span>
+
+                <h3>Complete Your Purchase</h3>
+
+                <p>
+                    Speak with the team about the next steps towards purchasing
+                    your chosen vehicle.
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+<!-- OUR SHOWROOM -->
+
+<!-- OUR SHOWROOM IMAGE CAROUSEL -->
+<section class="about-showroom-section" aria-labelledby="showroom-title">
+
+    <div class="showroom-heading">
+
+        <span class="section-eyebrow">VISIT US</span>
+
+        <h2 id="showroom-title">
+            Take a look inside.
+        </h2>
+
+        <p>
+            Explore the showroom and discover the environment
+            where you can find your next car.
+        </p>
+
+    </div>
+
+    <div class="showroom-carousel" id="showroom-carousel">
+
+        <div class="showroom-slides">
+
+            <!-- IMAGE 1 -->
+            <div class="showroom-slide active">
+                <img src="showroom-1.jpg"
+                     alt="Wide view of a modern car showroom">
+            </div>
+
+            <!-- IMAGE 2 -->
+            <div class="showroom-slide">
+                <img src="showroom-2.jpg"
+                     alt="Cars displayed inside the showroom">
+            </div>
+
+            <!-- IMAGE 3 -->
+            <div class="showroom-slide">
+                <img src="showroom-3.jpg"
+                     alt="Modern showroom interior">
+            </div>
+
+        </div>
+
+        <!-- LEFT ARROW -->
+        <button class="showroom-arrow showroom-prev"
+                type="button"
+                aria-label="Previous showroom photograph">
+            &#10094;
+        </button>
+
+        <!-- RIGHT ARROW -->
+        <button class="showroom-arrow showroom-next"
+                type="button"
+                aria-label="Next showroom photograph">
+            &#10095;
+        </button>
+
+        <!-- IMAGE INDICATORS -->
+        <div class="showroom-dots">
+
+            <button class="showroom-dot active"
+                    type="button"
+                    aria-label="Show photograph 1"
+                    aria-current="true"></button>
+
+            <button class="showroom-dot"
+                    type="button"
+                    aria-label="Show photograph 2"></button>
+
+            <button class="showroom-dot"
+                    type="button"
+                    aria-label="Show photograph 3"></button>
+
+        </div>
+
+        <div class="showroom-counter" aria-live="polite">
+            <span class="current-slide">01</span>
+            <span class="counter-divider">/</span>
+            <span>03</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- FINAL CALL TO ACTION -->
+<section class="about-final-cta">
+
+    <span class="section-eyebrow">YOUR NEXT JOURNEY STARTS HERE</span>
+
+    <h2>Ready to find your next car?</h2>
+
+    <p>
+        Explore our collection or get in touch with our team.
+        We're here to help you take the next step.
+    </p>
+
+    <div class="about-cta-buttons">
+
+        <a href="vehicle-search.html" class="about-cta-primary">
+            Explore Our Cars
+            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+        </a>
+
+        <a href="enquiry.html" class="about-cta-secondary">
+            Contact Our Team
+        </a>
+
+    </div>
+
+</section>
+
+
+    <!-- =================================================
+         OPENING TIMES
+    ================================================== -->
+
+    <section class="opening-times-section" aria-labelledby="opening-title">
+
+        <div class="opening-times-inner">
+
+            <div class="opening-info">
+
+                <span class="section-eyebrow">
+                    OPENING TIMES
+                </span>
+
+                <h2 id="opening-title">
+                    Open six days a week.
+                </h2>
+
+                <div class="enquiry-contact-item">
+
+                    <i data-lucide="map-pin" aria-hidden="true"></i>
+
+                    <div>
+
+                        <h3>Our Location</h3>
+
+                        <p>
+                            15 Chipmunk Close, Hatfield, Hertfordshire
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="enquiry-contact-item">
+
+                    <i data-lucide="phone" aria-hidden="true"></i>
+
+                    <div>
+
+                        <h3>Telephone</h3>
+
+                        <a href="tel:01707111222">
+                            01707 111 222
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="opening-times-list" aria-label="Opening hours">
+
+
+                <div class="opening-time-row">
+
+                    <span>Monday – Friday</span>
+
+                    <span>9:00 – 17:30</span>
+
+                </div>
+
+
+                <div class="opening-time-row">
+
+                    <span>Saturday</span>
+
+                    <span>9:00 – 16:00</span>
+
+                </div>
+
+
+                <div class="opening-time-row">
+
+                    <span>Sunday</span>
+
+                    <span>Closed</span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     SHARED FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+            <img
+                src="logo.png"
+                alt="Barry's Car Sales"
+                class="footer-logo"
+                loading="lazy"
+            >
+
+            <div class="footer-brand-text">
+
+                <h3>Barry's Car Sales</h3>
+
+                <p>
+                    Local quality used cars at sensible prices
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-divider" aria-hidden="true"></div>
+
+
+        <div class="footer-business-info">
+
+            <span>Barry's Car Sales</span>
+
+            <span class="footer-separator" aria-hidden="true">·</span>
+
+            <span>15 Chipmunk Close, Hatfield, Hertfordshire</span>
+
+            <span class="footer-separator" aria-hidden="true">·</span>
+
+            <a href="tel:01707111222">01707 111 222</a>
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     ICON LIBRARY
+===================================================== -->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Thank you for contacting Barry's Car Sales. Find our contact details and explore our available vehicles.">
+
+    <meta name="theme-color" content="#0b0b0b">
+
+    <title>Thank You | Barry's Car Sales</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+
+<body class="thankyou-page">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ACCESSIBILITY BUTTON -->
+<button class="accessibility-launcher"
+        id="accessibility-launcher"
+        type="button"
+        aria-label="Open accessibility settings"
+        aria-expanded="false"
+        aria-controls="accessibility-panel">
+    <span aria-hidden="true">♿</span>
+</button>
+
+<!-- ACCESSIBILITY PANEL -->
+<section class="accessibility-panel"
+         id="accessibility-panel"
+         aria-label="Accessibility settings"
+         hidden>
+
+    <div class="accessibility-panel-header">
+        <h2>Accessibility</h2>
+        <button type="button"
+                id="accessibility-close"
+                aria-label="Close accessibility settings">✕</button>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Read aloud</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="read-play" type="button">Read aloud</button>
+            <button class="accessibility-button" id="read-pause" type="button">Pause</button>
+            <button class="accessibility-button" id="read-resume" type="button">Resume</button>
+            <button class="accessibility-button" id="read-stop" type="button">Stop</button>
+        </div>
+
+        <label for="reading-speed">Reading speed</label>
+        <select id="reading-speed">
+            <option value="0.75">Slow</option>
+            <option value="1" selected>Normal</option>
+            <option value="1.25">Fast</option>
+            <option value="1.5">Very fast</option>
+        </select>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Text size</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="text-smaller" type="button">A−</button>
+            <button class="accessibility-button" id="text-normal" type="button">A</button>
+            <button class="accessibility-button" id="text-larger" type="button">A+</button>
+        </div>
+    </div>
+
+    <div class="accessibility-tool">
+        <h3>Display settings</h3>
+        <div class="accessibility-button-group">
+            <button class="accessibility-button" id="contrast-toggle" type="button">High contrast</button>
+            <button class="accessibility-button" id="motion-toggle" type="button">Reduce motion</button>
+            <button class="accessibility-button" id="accessibility-reset" type="button">Reset all</button>
+        </div>
+    </div>
+
+    <p id="accessibility-status" role="status" aria-live="polite"></p>
+</section>
+
+<a class="skip-link" href="#main-content">
+    Skip to main content
+</a>
+
+
+<!-- =====================================================
+     SHARED HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="header-top">
+
+        <a class="brand-group" href="index.html" aria-label="Barry's Car Sales home">
+
+            <img
+                src="logo.png"
+                alt="Barry's Car Sales"
+                class="header-logo"
+            >
+
+            <span class="brand-copy">
+
+                <span class="brand-name">Barry's Car Sales</span>
+
+                <span class="brand-tagline">Quality Cars. Honest Prices.</span>
+
+            </span>
+
+        </a>
+
+
+        <nav class="main-nav" aria-label="Main navigation">
+
+            <a href="index.html">Home</a>
+
+            <a href="about.html">About</a>
+
+            <a href="enquiry.html">Contact</a>
+
+        </nav>
+
+
+        <a href="tel:01707111222" class="header-phone">
+
+            <i data-lucide="phone" aria-hidden="true"></i>
+
+            <span>01707 111 222</span>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="thankyou-main" id="main-content">
+
+
+    <!-- =================================================
+         THANK YOU HERO
+    ================================================== -->
+
+    <section class="thankyou-hero">
+
+        <div
+            class="thankyou-image"
+            aria-hidden="true"
+        ></div>
+
+        <div
+            class="thankyou-overlay"
+            aria-hidden="true"
+        ></div>
+
+
+        <div class="thankyou-content">
+
+
+            <div
+                class="success-icon"
+                aria-hidden="true"
+            >
+
+                <i data-lucide="check"></i>
+
+            </div>
+
+
+            <span class="thankyou-eyebrow">
+                THANK YOU FOR GETTING IN TOUCH
+            </span>
+
+
+            <h1>Thank You.</h1>
+
+
+            <p class="thankyou-subtitle">
+                Thank you for contacting Barry's Car Sales.
+            </p>
+
+
+            <p class="thankyou-description">
+                We appreciate your interest. Your enquiry details
+                can now be reviewed by our team once your submission
+                has been successfully received.
+            </p>
+
+
+            <div class="thankyou-buttons">
+
+                <a href="index.html" class="primary-button">
+
+                    <i data-lucide="house" aria-hidden="true"></i>
+
+                    Back to Home
+
+                </a>
+
+
+                <a href="index.html#cars" class="secondary-button">
+
+                    Explore Our Cars
+
+                    <i data-lucide="arrow-right" aria-hidden="true"></i>
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         NEXT STEPS AND CONTACT DETAILS
+    ================================================== -->
+
+    
+<section class="thankyou-details" aria-labelledby="next-steps-heading">
+
+    <div class="thankyou-steps-heading">
+        <span class="detail-label">WHAT HAPPENS NEXT?</span>
+        <h2 id="next-steps-heading">Your journey starts here.</h2>
+        <p>Here's what you can expect after submitting your enquiry.</p>
+    </div>
+
+    <div class="thankyou-steps-grid">
+
+        <article class="thankyou-step-card">
+            <span class="step-number">01</span>
+            <h3>Enquiry Received</h3>
+            <p>We've received your message and appreciate your interest in Barry's Car Sales.</p>
+        </article>
+
+        <article class="thankyou-step-card">
+            <span class="step-number">02</span>
+            <h3>Our Team Contacts You</h3>
+            <p>One of our team members will get in touch within two working days.</p>
+        </article>
+
+        <article class="thankyou-step-card">
+            <span class="step-number">03</span>
+            <h3>Arrange Your Visit</h3>
+            <p>Arrange a viewing, explore your chosen vehicle and book a test drive.</p>
+        </article>
+
+    </div>
+
+    <div class="thankyou-bottom-contact">
+        <p>Have an urgent question?</p>
+        <a href="tel:01707111222">Call us: 01707 111 222</a>
+    </div>
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- =====================================================
+     SHARED FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+            <img
+                src="logo.png"
+                alt="Barry's Car Sales"
+                class="footer-logo"
+                loading="lazy"
+            >
+
+            <div class="footer-brand-text">
+
+                <h3>Barry's Car Sales</h3>
+
+                <p>
+                    Local quality used cars at sensible prices
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-divider" aria-hidden="true"></div>
+
+
+        <div class="footer-business-info">
+
+            <span>Barry's Car Sales</span>
+
+            <span class="footer-separator" aria-hidden="true">·</span>
+
+            <span>15 Chipmunk Close, Hatfield, Hertfordshire</span>
+
+            <span class="footer-separator" aria-hidden="true">·</span>
+
+            <a href="tel:01707111222">
+                01707 111 222
+            </a>
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     ICON LIBRARY
+===================================================== -->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+
+</script>
+
+<script src="accessibility.js" defer></script>
+</body>
+
+</html>
+

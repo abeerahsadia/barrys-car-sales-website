@@ -1,0 +1,1140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover quality pre-owned vehicles at Barry's Car Sales. Explore our collection and find your next car.">
+    <meta name="theme-color" content="#111111">
+
+    <title>Barry's Car Sales | Find Your Next Drive</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="vehicle-data.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="accessibility.js" defer></script>
+
+    <style>
+        .home-page {
+            background: #f5f1e8;
+            color: #171717;
+        }
+
+        .home-hero {
+            min-height: 680px;
+            height: 78vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            overflow: hidden;
+            background: #111;
+            color: #f5f1e8;
+        }
+
+        .hero-slides {
+            position: absolute;
+            inset: 0;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .home-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                rgba(0,0,0,.86),
+                rgba(0,0,0,.48) 65%,
+                rgba(0,0,0,.12));
+        }
+
+        .home-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+        }
+
+        .home-eyebrow {
+            color: #FFFFFF;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .home-hero-content .eyebrow {
+            color: #a9dceb;
+        }
+
+        .home-hero h1 {
+            margin: 22px 0;
+            color: #f5f1e8;
+            font: normal clamp(48px,7vw,88px)/1.06 Georgia,serif;
+        }
+
+        .home-hero p {
+            max-width: 570px;
+            color: #eee9df;
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 25px;
+            padding: 16px 26px;
+            background: #f5f1e8;
+            color: #111;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: .3s;
+        }
+
+        .home-button:hover {
+            background: #a9dceb;
+            transform: translateY(-3px);
+        }
+
+        .hero-pagination {
+            position: absolute;
+            z-index: 3;
+            right: 8%;
+            bottom: 35px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .hero-dot {
+            width: 10px;
+            height: 10px;
+            border: 0;
+            border-radius: 50%;
+            background: white;
+            opacity: .5;
+            cursor: pointer;
+        }
+
+        .hero-dot.active {
+            background: #a9dceb;
+            opacity: 1;
+            transform: scale(1.3);
+        }
+
+        .home-intro {
+            padding: 85px 7%;
+            text-align: center;
+        }
+
+        .home-intro h2,
+        .home-section-heading h2,
+        .home-showroom h2,
+        .home-about h2,
+        .home-cta h2 {
+            margin: 15px 0 20px;
+            color: #171717;
+            font: normal clamp(36px,4.5vw,58px)/1.15 Georgia,serif;
+        }
+
+        .home-intro p {
+            max-width: 760px;
+            margin: auto;
+            color: #625e57;
+            line-height: 1.9;
+        }
+
+        .home-browse {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 460px;
+            background: #171717;
+            color: #f5f1e8;
+        }
+
+        .home-browse img {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            object-fit: cover;
+        }
+
+        .home-browse-content {
+            padding: 70px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .home-browse h2 {
+            color: #f5f1e8;
+            font: normal clamp(38px,4vw,58px)/1.1 Georgia,serif;
+        }
+
+        .home-browse p {
+            max-width: 480px;
+            color: #d4cec3;
+            line-height: 1.9;
+        }
+
+        .home-categories,
+        .home-featured {
+            padding: 90px 7%;
+        }
+
+        .home-categories {
+            background: #f5f1e8;
+        }
+
+        .home-featured {
+            background: #eae4d8;
+        }
+
+        .home-section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 30px;
+            margin-bottom: 38px;
+        }
+
+        .home-section-heading p {
+            max-width: 420px;
+            color: #69645d;
+            line-height: 1.8;
+        }
+
+        .category-grid-new {
+            display: grid;
+            grid-template-columns: repeat(4,minmax(0,1fr));
+            gap: 16px;
+        }
+
+        .category-tile {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            background: #222;
+            color: white;
+            text-decoration: none;
+        }
+
+        .category-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: .75;
+            transition: transform .6s,opacity .4s;
+        }
+
+        .category-tile:hover img {
+            transform: scale(1.07);
+            opacity: .95;
+        }
+
+        .category-tile span {
+            position: absolute;
+            left: 20px;
+            bottom: 18px;
+            z-index: 2;
+            color: #fff;
+            font: normal 24px Georgia,serif;
+        }
+
+        .category-tile::after {
+            content: "";
+            position: absolute;
+            inset: 35% 0 0;
+            background: linear-gradient(transparent,rgba(0,0,0,.8));
+        }
+
+        .home-view-all {
+            color: #171717;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid #171717;
+            padding-bottom: 5px;
+        }
+
+        .home-car-grid {
+            display: grid;
+            grid-template-columns: repeat(4,minmax(0,1fr));
+            gap: 20px;
+        }
+
+        .home-car-card {
+            background: #fdfbf6;
+            border: 1px solid #ded8cc;
+            overflow: hidden;
+            transition: transform .3s,box-shadow .3s;
+        }
+
+        .home-car-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px #00000012;
+        }
+
+        .home-car-card > a:first-child {
+            display: block;
+            position: relative;
+            background: #ded8cc;
+        }
+
+        .home-car-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+
+        .home-car-card-content {
+            padding: 22px;
+        }
+
+        .home-car-card h3 {
+            color: #171717;
+            font: normal 22px Georgia,serif;
+            margin: 7px 0 10px;
+        }
+
+        .home-car-card .year {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .home-car-card .price {
+            color: #171717;
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .home-car-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px 14px;
+            padding: 14px 0;
+            border-top: 1px solid #e1dbd0;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .home-car-card-content > a {
+            display: inline-block;
+            color: #171717;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid #a9dceb;
+            padding-bottom: 5px;
+        }
+
+        .home-why {
+            padding: 95px 7%;
+            background: #171717;
+            color: #f5f1e8;
+        }
+
+        .home-why .home-section-heading h2 {
+            color: #f5f1e8;
+        }
+
+        .home-why .home-section-heading p {
+            color: #c8c2b8;
+        }
+
+        .home-benefits {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 1px;
+            background: #45413b;
+            margin-top: 40px;
+        }
+
+        .home-benefit {
+            padding: 32px 24px;
+            background: #171717;
+        }
+
+        .home-benefit .number {
+            color: #a9dceb;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .home-benefit h3 {
+            color: #f5f1e8;
+            font: normal 23px Georgia,serif;
+        }
+
+        .home-benefit p {
+            color: #c8c2b8;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .home-showroom,
+        .home-about {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            align-items: center;
+            background: #f5f1e8;
+        }
+
+        .home-showroom img,
+        .home-about img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+        }
+
+        .home-showroom-content,
+        .home-about-content {
+            padding: 60px 12%;
+        }
+
+        .home-showroom-content p,
+        .home-about-content p {
+            color: #625e57;
+            line-height: 1.9;
+        }
+
+        .home-about {
+            grid-template-columns: 1fr 1fr;
+            background: #eae4d8;
+        }
+
+        .home-cta {
+            padding: 85px 7%;
+            text-align: center;
+            background: #a9dceb;
+            color: #111;
+        }
+
+        .home-cta h2 {
+            max-width: 950px;
+            margin: 20px auto;
+        }
+
+        .home-cta p {
+            color: #303b3f;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .home-cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .home-cta-actions a {
+            padding: 15px 25px;
+            background: #111;
+            color: #f5f1e8;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .home-cta-actions a.secondary {
+            background: transparent;
+            color: #111;
+            border: 1px solid #111;
+        }
+
+        .home-image-missing {
+            display: none !important;
+        }
+
+        .home-empty-message {
+            padding: 25px;
+            color: #625e57;
+            text-align: center;
+        }
+
+        @media(max-width:1000px) {
+            .home-car-grid,
+            .category-grid-new {
+                grid-template-columns: repeat(2,minmax(0,1fr));
+            }
+
+            .home-benefits {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+        @media(max-width:700px) {
+            .home-hero {
+                min-height: 600px;
+                height: 75vh;
+                padding: 60px 7%;
+            }
+
+            .home-browse,
+            .home-showroom,
+            .home-about {
+                grid-template-columns: 1fr;
+            }
+
+            .home-browse img {
+                min-height: 280px;
+                max-height: 340px;
+            }
+
+            .home-showroom img,
+            .home-about img {
+                height: 300px;
+            }
+
+            .home-section-heading {
+                display: block;
+            }
+
+            .home-car-grid,
+            .home-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .category-grid-new {
+                grid-template-columns: repeat(2,minmax(0,1fr));
+            }
+
+            .category-tile {
+                height: 165px;
+            }
+
+            .home-intro,
+            .home-categories,
+            .home-featured,
+            .home-why {
+                padding: 60px 6%;
+            }
+
+            .home-showroom-content,
+            .home-about-content {
+                padding: 45px 7%;
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .hero-slide,
+            .home-car-card,
+            .category-tile img {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="home-page">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="header-top">
+
+        <a class="brand-group" href="index.html"
+           aria-label="Barry's Car Sales home">
+
+            <img src="logo.png"
+                 alt="Barry's Car Sales logo"
+                 class="header-logo">
+
+            <span class="brand-copy">
+                <span class="brand-name">Barry's Car Sales</span>
+                <span class="brand-tagline">Quality Cars. Honest Prices.</span>
+            </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html" class="active" aria-current="page">Home</a>
+            <a href="about.html">About</a>
+            <a href="vehicle-search.html">Explore Cars</a>
+            <a href="enquiry.html">Contact</a>
+        </nav>
+
+         <a class="header-phone" href="tel:01707111222">
+    <i data-lucide="phone" aria-hidden="true"></i>
+    <span>01707 111 222</span>
+</a>
+
+    </div>
+</header>
+
+
+<main id="main-content">
+
+    <!-- HERO SLIDESHOW -->
+    <section class="home-hero" aria-label="Welcome to Barry's Car Sales">
+
+        <div class="hero-slides" aria-hidden="true">
+            <img class="hero-slide active" src="hero-cars.jpg" alt="">
+            <img class="hero-slide" src="feature-car.jpg" alt="">
+            <img class="hero-slide" src="showroom-interior.webp" alt="">
+        </div>
+
+        <div class="home-hero-content">
+            <span class="eyebrow">THE BARRY'S CAR SALES COLLECTION</span>
+
+            <h1>The right car.<br>A better journey.</h1>
+
+            <p>
+                Discover quality pre-owned vehicles, thoughtful service
+                and a straightforward approach to finding your next car.
+                Your next journey starts here.
+            </p>
+
+            <a href="vehicle-search.html" class="home-button">
+                Explore our cars <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+
+        <div class="hero-pagination" aria-label="Choose hero image">
+            <button class="hero-dot active" type="button"
+                    aria-label="Show hero image 1"
+                    aria-pressed="true"></button>
+
+            <button class="hero-dot" type="button"
+                    aria-label="Show hero image 2"
+                    aria-pressed="false"></button>
+
+            <button class="hero-dot" type="button"
+                    aria-label="Show hero image 3"
+                    aria-pressed="false"></button>
+        </div>
+
+    </section>
+
+
+    <!-- INTRODUCTION -->
+    <section class="home-intro">
+        <span class="home-eyebrow">QUALITY CARS. HONEST PRICES.</span>
+
+        <h2>A better way to find your next car.</h2>
+
+        <p>
+            At Barry's Car Sales, discovering your next vehicle should feel
+            straightforward. Explore our collection, compare your options
+            and speak with our team when you're ready.
+        </p>
+    </section>
+
+
+    <!-- BROWSE COLLECTION -->
+    <section class="home-browse">
+
+        <img src="feature-car.jpg"
+             alt="Featured vehicle from the Barry's Car Sales collection"
+             loading="lazy">
+
+        <div class="home-browse-content">
+            <span class="home-eyebrow">DISCOVER YOUR NEXT DRIVE</span>
+
+            <h2>Browse our collection.</h2>
+
+            <p>
+                From practical everyday vehicles to something with a little
+                more presence, explore our available cars and find a vehicle
+                that suits your needs.
+            </p>
+
+            <a href="vehicle-search.html" class="home-button">
+                Browse all cars ↗
+            </a>
+        </div>
+
+    </section>
+
+
+    <!-- VEHICLE CATEGORIES -->
+    <section class="home-categories">
+
+        <div class="home-section-heading">
+            <div>
+                <span class="home-eyebrow">EXPLORE OUR RANGE</span>
+                <h2>Explore vehicle categories.</h2>
+            </div>
+
+            <p>
+                Find your preferred style, from compact city cars to spacious
+                SUVs and premium vehicles.
+            </p>
+        </div>
+
+        <div class="category-grid-new">
+
+            <a class="category-tile"
+               href="vehicle-search.html?type=Hatchback">
+                <img src="images/golf.jpg" alt="Hatchback cars" loading="lazy">
+                <span>Hatchbacks ↗</span>
+            </a>
+
+            <a class="category-tile"
+               href="vehicle-search.html?type=SUV">
+                <img src="images/nissan-qashqai.jpg" alt="SUV cars" loading="lazy">
+                <span>SUVs ↗</span>
+            </a>
+
+            <a class="category-tile"
+               href="vehicle-search.html?type=Saloon">
+                <img src="images/bmw-3-series.jpg" alt="Saloon cars" loading="lazy">
+                <span>Saloons ↗</span>
+            </a>
+
+            <a class="category-tile"
+               href="vehicle-search.html?type=Estate">
+                <img src="images/audi-rs4-avant.jpg" alt="Estate cars" loading="lazy">
+                <span>Estates ↗</span>
+            </a>
+
+            <a class="category-tile"
+               href="vehicle-search.html?type=Convertible">
+                <img src="images/mercedes-cle53.jpg" alt="Convertible cars" loading="lazy">
+                <span>Convertibles ↗</span>
+            </a>
+
+            <a class="category-tile"
+               href="vehicle-search.html?type=Sports%20Car">
+                <img src="images/porsche-911-gts.jpg" alt="Sports cars" loading="lazy">
+                <span>Sports Cars ↗</span>
+            </a>
+
+            <a class="category-tile"
+               href="vehicle-search.html?type=Electric%20Hybrid">
+                <img src="images/tesla-model-s.jpg" alt="Electric and hybrid cars" loading="lazy">
+                <span>Electric &amp; Hybrid ↗</span>
+            </a>
+
+        </div>
+
+        <p style="text-align:center;margin-top:35px">
+            <a class="home-view-all" href="vehicle-search.html">
+                View all cars →
+            </a>
+        </p>
+
+    </section>
+
+
+    <!-- FEATURED VEHICLES -->
+    <section class="home-featured" id="cars">
+
+        <div class="home-section-heading">
+            <div>
+                <span class="home-eyebrow">HAND-PICKED FOR YOU</span>
+                <h2>Featured cars from our collection.</h2>
+            </div>
+
+            <a class="home-view-all" href="vehicle-search.html">
+                View all cars →
+            </a>
+        </div>
+
+        <div class="home-car-grid" id="home-featured-cars">
+            <p class="home-empty-message">Loading our vehicle collection...</p>
+        </div>
+
+    </section>
+
+
+    <!-- WHY CHOOSE US -->
+    <section class="home-why">
+
+        <div class="home-section-heading">
+            <div>
+                <span class="home-eyebrow">THE BARRY DIFFERENCE</span>
+                <h2>Why choose Barry's Car Sales?</h2>
+            </div>
+
+            <p>
+                A considered approach to car buying, with quality vehicles
+                and helpful service at every step.
+            </p>
+        </div>
+
+        <div class="home-benefits">
+
+            <article class="home-benefit">
+                <span class="number">01 / QUALITY</span>
+                <h3>Carefully selected cars</h3>
+                <p>Explore our collection of pre-owned vehicles.</p>
+            </article>
+
+            <article class="home-benefit">
+                <span class="number">02 / SERVICE</span>
+                <h3>Helpful guidance</h3>
+                <p>Our team can help answer your questions.</p>
+            </article>
+
+            <article class="home-benefit">
+                <span class="number">03 / CHOICE</span>
+                <h3>Options for your needs</h3>
+                <p>Browse different vehicle styles and specifications.</p>
+            </article>
+
+            <article class="home-benefit">
+                <span class="number">04 / EXPERIENCE</span>
+                <h3>A straightforward process</h3>
+                <p>We aim to make exploring your next car simple.</p>
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- SHOWROOM -->
+    <section class="home-showroom">
+
+        <img src="showroom-interior.webp"
+             alt="Interior of the Barry's Car Sales showroom"
+             loading="lazy">
+
+        <div class="home-showroom-content">
+            <span class="home-eyebrow">THE SHOWROOM EXPERIENCE</span>
+
+            <h2>See your next car up close.</h2>
+
+            <p>
+                Explore our vehicles in person and take time to find the
+                right fit. Get in touch with our team to discuss a visit.
+            </p>
+
+            <a href="enquiry.html" class="home-button">
+                Contact our team ↗
+            </a>
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="home-about">
+
+        <div class="home-about-content">
+            <span class="home-eyebrow">A LITTLE ABOUT US</span>
+
+            <h2>Meet Barry's Car Sales.</h2>
+
+            <p>
+                We're here to help you explore quality pre-owned vehicles
+                with clear information and a straightforward approach.
+                Discover more about our business and the people behind it.
+            </p>
+
+            <a href="about.html" class="home-button">
+                More about us ↗
+            </a>
+        </div>
+
+        <img src="about-hero-car.webp"
+             alt="Vehicle at Barry's Car Sales"
+             loading="lazy">
+
+    </section>
+
+
+    <!-- FINAL CALL TO ACTION -->
+    <section class="home-cta">
+
+        <span class="home-eyebrow">YOUR NEXT JOURNEY STARTS HERE</span>
+
+        <h2>Ready to find your next drive?</h2>
+
+        <p>Explore our collection or speak with our team today.</p>
+
+        <div class="home-cta-actions">
+            <a href="vehicle-search.html">Explore our cars ↗</a>
+            <a href="enquiry.html" class="secondary">Contact us</a>
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <img src="logo.png"
+                 alt="Barry's Car Sales"
+                 class="footer-logo"
+                 loading="lazy">
+
+            <div class="footer-brand-text">
+                <h3>Barry's Car Sales</h3>
+                <p>Local quality used cars at sensible prices</p>
+            </div>
+        </div>
+
+        <div class="footer-divider" aria-hidden="true"></div>
+
+        <div class="footer-business-info">
+            <span>Barry's Car Sales</span>
+            <span class="footer-separator" aria-hidden="true">·</span>
+            <span>15 Chipmunk Close, Hatfield, Hertfordshire</span>
+            <span class="footer-separator" aria-hidden="true">·</span>
+            <a href="tel:01707111222">01707 111 222</a>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ACCESSIBILITY BUTTON -->
+<button class="accessibility-launcher"
+        id="accessibility-launcher"
+        type="button"
+        aria-label="Open accessibility settings"
+        aria-expanded="false"
+        aria-controls="accessibility-panel">
+    <span aria-hidden="true">♿</span>
+</button>
+
+
+<!-- ACCESSIBILITY PANEL -->
+<section class="accessibility-panel"
+         id="accessibility-panel"
+         aria-label="Accessibility settings"
+         hidden>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <h2 style="margin:0">Accessibility</h2>
+
+        <button type="button"
+                id="accessibility-close"
+                aria-label="Close accessibility settings">
+            ✕
+        </button>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px">
+        <button type="button" id="read-play">Read aloud</button>
+        <button type="button" id="read-pause">Pause</button>
+        <button type="button" id="read-resume">Resume</button>
+        <button type="button" id="read-stop">Stop</button>
+    </div>
+
+    <label for="reading-speed" style="display:block;margin-top:15px">
+        Reading speed
+    </label>
+
+    <select id="reading-speed">
+        <option value="0.75">Slow</option>
+        <option value="1" selected>Normal</option>
+        <option value="1.25">Fast</option>
+        <option value="1.5">Very fast</option>
+    </select>
+
+    <div style="display:flex;gap:8px;margin-top:15px">
+        <button type="button" id="text-smaller">A−</button>
+        <button type="button" id="text-normal">A</button>
+        <button type="button" id="text-larger">A+</button>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:15px">
+        <button type="button" id="contrast-toggle">High contrast</button>
+        <button type="button" id="motion-toggle">Reduce motion</button>
+        <button type="button" id="accessibility-reset">Reset all</button>
+    </div>
+
+    <p id="accessibility-status"
+       role="status"
+       aria-live="polite"></p>
+
+</section>
+
+
+<!-- HOMEPAGE FUNCTIONALITY -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // HERO SLIDESHOW
+    const slides = Array.from(
+        document.querySelectorAll(".hero-slide")
+    );
+
+    const dots = Array.from(
+        document.querySelectorAll(".hero-dot")
+    );
+
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    let currentSlide = 0;
+    let slideTimer;
+
+    function showSlide(index) {
+        currentSlide = index;
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+            dot.setAttribute(
+                "aria-pressed",
+                i === index ? "true" : "false"
+            );
+        });
+    }
+
+    function startSlideshow() {
+        if (reducedMotion || slides.length < 2) return;
+
+        clearInterval(slideTimer);
+
+        slideTimer = setInterval(() => {
+            showSlide((currentSlide + 1) % slides.length);
+        }, 5500);
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            showSlide(index);
+            startSlideshow();
+        });
+    });
+
+    const hero = document.querySelector(".home-hero");
+
+    hero?.addEventListener("mouseenter", () => {
+        clearInterval(slideTimer);
+    });
+
+    hero?.addEventListener("mouseleave", startSlideshow);
+
+    startSlideshow();
+
+
+    // FEATURED VEHICLES
+    const featuredContainer = document.getElementById(
+        "home-featured-cars"
+    );
+
+    const vehicles = window.BARRYS_VEHICLES || [];
+
+    const featuredIds = [
+        "bmw-320d-2019",
+        "qashqai-2022",
+        "porsche-911-gts-2022",
+        "tesla-model-s-2021"
+    ];
+
+    function formatPrice(price) {
+        return Number(price).toLocaleString("en-GB", {
+            style: "currency",
+            currency: "GBP",
+            maximumFractionDigits: 0
+        });
+    }
+
+    if (featuredContainer) {
+        featuredContainer.innerHTML = "";
+
+        const featuredVehicles = featuredIds
+            .map(id => vehicles.find(car => car.id === id))
+            .filter(Boolean);
+
+        if (featuredVehicles.length === 0) {
+            featuredContainer.innerHTML =
+                '<p class="home-empty-message">Our vehicle collection is currently unavailable. Please explore our vehicle search page.</p>';
+        }
+
+featuredVehicles.forEach(car => {
+    const card = document.createElement("article");
+    card.className = "home-car-card";
+
+    // Vehicle image (no separate link)
+    const image = document.createElement("img");
+    image.src = car.image;
+    image.alt = car.year + " " + car.name;
+    image.loading = "lazy";
+
+    image.onerror = function () {
+        image.classList.add("home-image-missing");
+    };
+
+    const content = document.createElement("div");
+    content.className = "home-car-card-content";
+
+    const year = document.createElement("span");
+    year.className = "year";
+    year.textContent = car.year + " · " + car.type.toUpperCase();
+
+    const name = document.createElement("h3");
+    name.textContent = car.name;
+
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = formatPrice(car.price);
+
+    const specs = document.createElement("div");
+    specs.className = "home-car-specs";
+
+    [
+        Number(car.mileage).toLocaleString("en-GB") + " miles",
+        car.fuel,
+        car.transmission
+    ].forEach(value => {
+        const item = document.createElement("span");
+        item.textContent = value;
+        specs.appendChild(item);
+    });
+
+    const detailsLink = document.createElement("a");
+    detailsLink.href =
+        "car-details.html?id=" + encodeURIComponent(car.id);
+    detailsLink.textContent = "View details ↗";
+
+    content.append(year, name, price, specs, detailsLink);
+    card.append(image, content);
+
+    featuredContainer.appendChild(card);
+});
+
+    // Update footer year if an element with this ID is added later.
+    const footerYear = document.getElementById("footer-year");
+
+    if (footerYear) {
+        footerYear.textContent = new Date().getFullYear();
+    }
+
+});
+</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+</script>
+</body>
+</html>
